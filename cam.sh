@@ -2,7 +2,7 @@
 
 #example ./cam.sh video.webm /dev/video2
 
-sudo modprobe v4l2loopback
+sudo modprobe v4l2loopback exclusive_caps=1 
 
 INPUT=$1
 DEVICE_WEBCAM=$2
