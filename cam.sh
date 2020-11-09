@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#example ./cam.sh video.webm /dev/video2
+#example ./cam.sh video.webm /dev/video10
 
-sudo modprobe v4l2loopback devices=1 max_buffers=2 card_label="fakewebcam" exclusive_caps=1 
+sudo modprobe v4l2loopback devices=1 video_nr=10 max_buffers=2 card_label="fakewebcam" exclusive_caps=1 
 
 INPUT=$1
 DEVICE_WEBCAM=$2
@@ -12,6 +12,6 @@ while [ true ]; do
    if [ $? = 0 ]; then
       exit;
    else
-	ffmpeg -v quiet -re -i $INPUT -map 0:v -f v4l2 $DEVICE_WEBCAM	
+	ffmpeg -v quiet -re -i $INPUT -map 0:v -f v4l2 $DEVICE_WEBCAM
    fi
 done
