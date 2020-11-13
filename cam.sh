@@ -12,6 +12,6 @@ while [ true ]; do
    if [ $? = 0 ]; then
       exit;
    else
-	ffmpeg -v quiet -re -i $INPUT -map 0:v -f v4l2 $DEVICE_WEBCAM
+	ffmpeg -re -stream_loop -1 -hwaccel vulkan -i $INPUT -f v4l2 -pix_fmt yuv420p $DEVICE_WEBCAM
    fi
 done
